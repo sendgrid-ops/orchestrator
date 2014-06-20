@@ -121,41 +121,41 @@ function openNodeModal(node) {
     addNodeModalDataAttribute("Cluster",
             '<a href="/web/cluster/'+node.ClusterName+'">'+node.ClusterName+'</a>');
     
-    $('#node_modal button[data-btn=begin-maintenance]').unbind("click");
-    $('#node_modal button[data-btn=end-maintenance]').unbind("click");
+    // $('#node_modal button[data-btn=begin-maintenance]').unbind("click");
+    // $('#node_modal button[data-btn=end-maintenance]').unbind("click");
     $('#node_modal button[data-btn=refresh-instance]').unbind("click");
     $('#node_modal button[data-btn=forget-instance]').unbind("click");
-    $('#node_modal button[data-btn=start-slave]').unbind("click");
-    $('#node_modal button[data-btn=stop-slave]').unbind("click");
-    $('#node_modal button[data-btn=begin-maintenance]').click(function() {
-    	if (!$("#beginMaintenanceOwner").val()) {
-    		return addModalAlert("You must fill the owner field");
-    	}
-    	if (!$("#beginMaintenanceReason").val()) {
-    		return addModalAlert("You must fill the reason field");
-    	}
-    	showLoader();
-    	var uri = "/api/begin-maintenance/"+node.Key.Hostname+"/"+node.Key.Port + "/" + $("#beginMaintenanceOwner").val() + "/" + $("#beginMaintenanceReason").val();
-        $.get(uri, function (operationResult) {
-			hideLoader();
-			if (operationResult.Code == "ERROR") {
-				addAlert(operationResult.Message)
-			} else {
-				location.reload();
-			}	
-        }, "json");	
-    });
-    $('#node_modal button[data-btn=end-maintenance]').click(function(){
-    	showLoader();
-        $.get("/api/end-maintenance/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
-			hideLoader();
-			if (operationResult.Code == "ERROR") {
-				addAlert(operationResult.Message)
-			} else {
-				location.reload();
-			}	
-        }, "json");	
-    });
+    // $('#node_modal button[data-btn=start-slave]').unbind("click");
+    // $('#node_modal button[data-btn=stop-slave]').unbind("click");
+   //  $('#node_modal button[data-btn=begin-maintenance]').click(function() {
+   //  	if (!$("#beginMaintenanceOwner").val()) {
+   //  		return addModalAlert("You must fill the owner field");
+   //  	}
+   //  	if (!$("#beginMaintenanceReason").val()) {
+   //  		return addModalAlert("You must fill the reason field");
+   //  	}
+   //  	showLoader();
+   //  	var uri = "/api/begin-maintenance/"+node.Key.Hostname+"/"+node.Key.Port + "/" + $("#beginMaintenanceOwner").val() + "/" + $("#beginMaintenanceReason").val();
+   //      $.get(uri, function (operationResult) {
+			// hideLoader();
+			// if (operationResult.Code == "ERROR") {
+			// 	addAlert(operationResult.Message)
+			// } else {
+			// 	location.reload();
+			// }	
+   //      }, "json");	
+   //  });
+   //  $('#node_modal button[data-btn=end-maintenance]').click(function(){
+   //  	showLoader();
+   //      $.get("/api/end-maintenance/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
+			// hideLoader();
+			// if (operationResult.Code == "ERROR") {
+			// 	addAlert(operationResult.Message)
+			// } else {
+			// 	location.reload();
+			// }	
+   //      }, "json");	
+   //  });
     $('#node_modal button[data-btn=refresh-instance]').click(function(){
     	showLoader();
         $.get("/api/refresh/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
@@ -167,28 +167,28 @@ function openNodeModal(node) {
 			}	
         }, "json");	
     });
-    $('#node_modal button[data-btn=start-slave]').click(function(){
-    	showLoader();
-        $.get("/api/start-slave/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
-			hideLoader();
-			if (operationResult.Code == "ERROR") {
-				addAlert(operationResult.Message)
-			} else {
-				location.reload();
-			}	
-        }, "json");	
-    });
-    $('#node_modal button[data-btn=stop-slave]').click(function(){
-    	showLoader();
-        $.get("/api/stop-slave/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
-			hideLoader();
-			if (operationResult.Code == "ERROR") {
-				addAlert(operationResult.Message)
-			} else {
-				location.reload();
-			}	
-        }, "json");	
-    });
+   //  $('#node_modal button[data-btn=start-slave]').click(function(){
+   //  	showLoader();
+   //      $.get("/api/start-slave/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
+			// hideLoader();
+			// if (operationResult.Code == "ERROR") {
+			// 	addAlert(operationResult.Message)
+			// } else {
+			// 	location.reload();
+			// }	
+   //      }, "json");	
+   //  });
+   //  $('#node_modal button[data-btn=stop-slave]').click(function(){
+   //  	showLoader();
+   //      $.get("/api/stop-slave/"+node.Key.Hostname+"/"+node.Key.Port, function (operationResult) {
+			// hideLoader();
+			// if (operationResult.Code == "ERROR") {
+			// 	addAlert(operationResult.Message)
+			// } else {
+			// 	location.reload();
+			// }	
+   //      }, "json");	
+   //  });
     $('#node_modal button[data-btn=forget-instance]').click(function(){
     	var message = "<p>Are you sure you wish to forget <code><strong>" + node.Key.Hostname + ":" + node.Key.Port +
 			"</strong></code>?" +
